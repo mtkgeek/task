@@ -32,27 +32,30 @@ class _PostsListState extends State<PostsList> {
         }
       },
       builder: (context, state) {
-        if (state.posts.isEmpty || state.posts != null) {
-          box.put('storedPost', state.posts);
-        }
+        print('hereeeeee');
+        print(storedPosts);
         switch (state.status) {
           case PostStatus.failure:
-            return storedPosts != null
+            return storedPosts != null && storedPosts.isNotEmpty
                 ? ListView.builder(
                     itemBuilder: (BuildContext context, int index) {
-                      return index >= state.posts.length
-                          ? BottomLoader()
-                          : PostListItem(post: storedPosts[index]);
+                      return PostListItem(post: storedPosts[index]);
                     },
-                    itemCount: state.hasReachedMax
-                        ? state.posts.length
-                        : state.posts.length + 1,
+                    itemCount: storedPosts.length,
                     // controller: _scrollController,
                   )
                 : const Center(child: Text('failed to fetch posts'));
           case PostStatus.success:
             if (state.posts.isEmpty) {
-              return const Center(child: Text('no posts'));
+              return storedPosts != null && storedPosts.isNotEmpty
+                  ? ListView.builder(
+                      itemBuilder: (BuildContext context, int index) {
+                        return PostListItem(post: storedPosts[index]);
+                      },
+                      itemCount: storedPosts.length,
+                      // controller: _scrollController,
+                    )
+                  : const Center(child: Text('no posts'));
             }
             return ListView.builder(
               itemBuilder: (BuildContext context, int index) {

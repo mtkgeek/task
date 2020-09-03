@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:hive/hive.dart';
 import 'package:task/posts/posts.dart';
 import 'package:http/http.dart' as http;
 import 'package:meta/meta.dart';
@@ -120,7 +121,14 @@ class PostBloc extends Bloc<PostEvent, PostState> {
         Post post = tempPosts[i];
         tempPosts[i] = await _transformPosts(post);
       }
+      try {
+        var box = Hive.box('myBox');
+      await box.put('storedPost', tempPosts);
+      } finally {
+  
       return tempPosts;
+      }
+    
     }
 
     throw Exception('error fetching posts');
