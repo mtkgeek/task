@@ -61,74 +61,77 @@ class PostBloc extends Bloc<PostEvent, PostState> {
     }
   }
 
-  Future<Post> _transformPosts(Post post) async {
-    List<PostComments> comments;
-    String url;
+  // Future<Post> _transformPosts(Post post) async {
+  //   List<PostComments> comments;
+  //   String url;
 
-    final getPostPhotosResponse = await httpClient.get(
-      'https://jsonplaceholder.typicode.com/albums/${post.id}/photos',
-    );
+  //   final getPostPhotosResponse = await httpClient.get(
+  //     'https://jsonplaceholder.typicode.com/albums/${post.id}/photos',
+  //   );
 
-    final getPostCommentsResponse = await httpClient.get(
-      'https://jsonplaceholder.typicode.com/posts/${post.id}/comments',
-    );
+  //   final getPostCommentsResponse = await httpClient.get(
+  //     'https://jsonplaceholder.typicode.com/posts/${post.id}/comments',
+  //   );
 
-    if (getPostPhotosResponse.statusCode == 200) {
-      final dataTwo = json.decode(getPostPhotosResponse.body) as List;
+  //   if (getPostPhotosResponse.statusCode == 200) {
+  //     final dataTwo = json.decode(getPostPhotosResponse.body) as List;
 
-      url = dataTwo[0]['url'];
-    }
+  //     url = dataTwo[0]['url'];
+  //   }
 
-    if (getPostCommentsResponse.statusCode == 200) {
-      final decodedResponse = json.decode(getPostCommentsResponse.body) as List;
-      comments = decodedResponse.map((dynamic rawResponse) {
-        return PostComments(
-          id: rawResponse['id'] as int,
-          email: rawResponse['email'] as String,
-          body: rawResponse['body'] as String,
-        );
-      }).toList();
-      return Post(
-        id: post.id,
-        title: post.title,
-        body: post.body,
-        photoUrl: url,
-        comments: comments,
-      );
-    }
-    throw Exception('error fetching posts');
-  }
+  //   if (getPostCommentsResponse.statusCode == 200) {
+  //     final decodedResponse = json.decode(getPostCommentsResponse.body) as List;
+  //     comments = decodedResponse.map((dynamic rawResponse) {
+  //       return PostComments(
+  //         id: rawResponse['id'] as int,
+  //         email: rawResponse['email'] as String,
+  //         body: rawResponse['body'] as String,
+  //       );
+  //     }).toList();
+  //     return Post(
+  //       id: post.id,
+  //       title: post.title,
+  //       body: post.body,
+  //       photoUrl: url,
+  //       comments: comments,
+  //     );
+  //   }
+  //   throw Exception('error fetching posts');
+  // }
 
   Future<List<Post>> _fetchPosts(int startIndex, int limit) async {
     final response = await httpClient.get(
-      'https://jsonplaceholder.typicode.com/posts?_start=$startIndex&_limit=$limit',
+      'http://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline',
     );
 
-    List<Post> tempPosts;
-    // List<Post> finalPosts;
+    // List<Post> tempPosts;
+    List<Post> finalPosts;
 
     if (response.statusCode == 200) {
       final data = json.decode(response.body) as List;
-      tempPosts = data.map((dynamic rawPost) {
+      finalPosts = data.map((dynamic rawPost) {
         return Post(
           id: rawPost['id'] as int,
-          title: rawPost['title'] as String,
-          body: rawPost['body'] as String,
+          title: rawPost['brand'] as String,
+          body: rawPost['description'] as String,
+          name: rawPost['name'] as String,
+          photoUrl: rawPost['image_link'] as String,
         );
       }).toList();
+      return finalPosts;
 
-      for (int i = 0; i < tempPosts.length; i++) {
-        Post post = tempPosts[i];
-        tempPosts[i] = await _transformPosts(post);
-      }
-      try {
-        var box = Hive.box('myBox');
-      await box.put('storedPost', tempPosts);
-      } finally {
-  
-      return tempPosts;
-      }
-    
+      // for (int i = 0; i < tempPosts.length; i++) {
+      //   Post post = tempPosts[i];
+      //   tempPosts[i] = await _transformPosts(post);
+      // }
+      // try {
+      //   var box = Hive.box('myBox');
+      // await box.put('storedPost', tempPosts);
+      // } finally {
+
+      // return tempPosts;
+      // }
+
     }
 
     throw Exception('error fetching posts');

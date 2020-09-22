@@ -10,27 +10,72 @@ class PostListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     // final textTheme = Theme.of(context).textTheme;
     return GestureDetector(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                  height: 200,
-                  width: double.infinity,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            height: 150,
+            child: Stack(
+              children: <Widget>[
+                Container(
+                    height: 150,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      image: DecorationImage(
+                        image: NetworkImage(post.photoUrl),
+                        fit: BoxFit.cover,
+                      ),
+                    )),
+                Container(
                   decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: NetworkImage(post.photoUrl),
-                      fit: BoxFit.cover,
-                    ),
-                  )),
+                      color: Colors.white,
+                      gradient: LinearGradient(
+                          begin: FractionalOffset.topCenter,
+                          end: FractionalOffset.bottomCenter,
+                          colors: [
+                            Colors.grey.withOpacity(0.3),
+                            Colors.black,
+                          ],
+                          stops: [
+                            0.0,
+                            1.0
+                          ])),
+                ),
+                Positioned(
+                    bottom: 30,
+                    left: 5,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        width: 150,
+                        child: Text('${post.title}',
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                                fontSize: 18)),
+                      ),
+                    )),
+                Positioned(
+                    bottom: 10,
+                    left: 5,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        width: 150,
+                        child: Text('${post.name}',
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.green,
+                                fontSize: 13)),
+                      ),
+                    )),
+              ],
             ),
-            ListTile(
-              title: Text('${post.title}'),
-              subtitle: Text('${post.body}'),
-            ),
-            SizedBox(height: 20.0),
-          ],
+          ),
         ),
         onTap: () async {
           await Navigator.push(

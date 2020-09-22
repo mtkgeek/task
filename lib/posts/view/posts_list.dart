@@ -12,15 +12,12 @@ class PostsList extends StatefulWidget {
 class _PostsListState extends State<PostsList> {
   // final _scrollController = ScrollController();
   PostBloc _postBloc;
-  var box = Hive.box('myBox');
-  List storedPosts;
 
   @override
   void initState() {
     super.initState();
     // _scrollController.addListener(_onScroll);
     _postBloc = context.bloc<PostBloc>();
-    storedPosts = box.get('storedPost');
   }
 
   @override
@@ -32,36 +29,23 @@ class _PostsListState extends State<PostsList> {
         }
       },
       builder: (context, state) {
-        print('hereeeeee');
-        print(storedPosts);
         switch (state.status) {
           case PostStatus.failure:
-            return storedPosts != null && storedPosts.isNotEmpty
-                ? ListView.builder(
-                    itemBuilder: (BuildContext context, int index) {
-                      return PostListItem(post: storedPosts[index]);
-                    },
-                    itemCount: storedPosts.length,
-                    // controller: _scrollController,
-                  )
-                : const Center(child: Text('failed to fetch posts'));
+            return const Center(child: Text('failed to fetch posts'));
           case PostStatus.success:
             if (state.posts.isEmpty) {
-              return storedPosts != null && storedPosts.isNotEmpty
-                  ? ListView.builder(
-                      itemBuilder: (BuildContext context, int index) {
-                        return PostListItem(post: storedPosts[index]);
-                      },
-                      itemCount: storedPosts.length,
-                      // controller: _scrollController,
-                    )
-                  : const Center(child: Text('no posts'));
+              return const Center(child: Text('no posts'));
             }
             return ListView.builder(
               itemBuilder: (BuildContext context, int index) {
                 return index >= state.posts.length
                     ? BottomLoader()
-                    : PostListItem(post: state.posts[index]);
+                    : Column(
+                        children: <Widget>[
+                          PostListItem(post: state.posts[index]),
+                          Divider(height: 5, thickness: 5),
+                        ],
+                      );
               },
               itemCount: state.hasReachedMax
                   ? state.posts.length
@@ -84,29 +68,14 @@ class _PostsListState extends State<PostsList> {
                           height: 200,
                           color: Colors.white,
                         ),
-                        SizedBox(height: 5),
-                        Container(
-                          height: 48.0,
-                          color: Colors.white,
-                        ),
-                        SizedBox(height: 30),
+                        SizedBox(height: 25),
                         Container(
                           height: 200,
                           color: Colors.white,
                         ),
-                        SizedBox(height: 5),
-                        Container(
-                          height: 48.0,
-                          color: Colors.white,
-                        ),
-                        SizedBox(height: 30),
+                        SizedBox(height: 25),
                         Container(
                           height: 200,
-                          color: Colors.white,
-                        ),
-                        SizedBox(height: 5),
-                        Container(
-                          height: 48.0,
                           color: Colors.white,
                         ),
                       ],

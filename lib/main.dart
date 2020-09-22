@@ -3,18 +3,12 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hive/hive.dart';
 import 'package:task/app.dart';
-import 'package:task/posts/models/models.dart';
 import 'package:task/simple_bloc_observer.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 
 void main() async {
   EquatableConfig.stringify = kDebugMode;
-  await Hive.initFlutter();
-  Hive.registerAdapter(PostAdapter());
-  Hive.registerAdapter(PostCommentsAdapter());
-  await Hive.openBox('myBox');
+
   Bloc.observer = SimpleBlocObserver();
   runApp(App());
 }
