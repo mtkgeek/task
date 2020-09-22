@@ -52,7 +52,7 @@ class PostDetailPage extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.all(14.0),
                             child: Text(
-                              '${post.body}\n${post.body}\n${post.body}',
+                              '${post.body}',
                               style: TextStyle(fontSize: 16.0),
                             ),
                           ),
