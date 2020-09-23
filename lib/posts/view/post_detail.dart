@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:task/posts/models/post.dart';
+import 'package:task/posts/widgets/toolbar.dart';
 
 class PostDetailPage extends StatelessWidget {
   final Post post;
@@ -10,7 +11,8 @@ class PostDetailPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           "A3kaPm",
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(
+              color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
         backgroundColor: Colors.white,
@@ -20,18 +22,18 @@ class PostDetailPage extends StatelessWidget {
           },
           child: Icon(
             Icons.arrow_back_ios,
-            color: Colors.green,
-            size: 25.0,
+            color: Color(0xFF6B9949),
+            size: 20.0,
           ),
         ),
         actions: <Widget>[
           Padding(
-              padding: EdgeInsets.only(right: 20.0),
+              padding: EdgeInsets.only(right: 15.0),
               child: GestureDetector(
                 onTap: () {},
                 child: Icon(
                   Icons.search,
-                  size: 25.0,
+                  size: 20.0,
                   color: Colors.grey,
                 ),
               )),
@@ -57,122 +59,82 @@ class PostDetailPage extends StatelessWidget {
                             ),
                           ),
                           SizedBox(height: 40),
-                          Divider(height: 3, thickness: 3),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              width: double.infinity,
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 8.0, horizontal: 10),
-                                child: Text("Y3peHHHHNN A3Cap H1",
-                                    style: TextStyle(
-                                        color: Colors.black54,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18)),
+                          Column(
+                            children: <Widget>[
+                              Divider(height: 3, thickness: 3),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(
+                                  width: double.infinity,
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 8.0, horizontal: 10),
+                                    child: Text("Y3peHHHHNN A3Cap H1",
+                                        style: TextStyle(
+                                            color: Colors.black54,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 16)),
+                                  ),
+                                ),
                               ),
-                            ),
+                              Divider(height: 3, thickness: 3),
+                            ],
                           ),
-                          Divider(height: 4, thickness: 4),
                           SizedBox(height: 4),
                         ],
                       )),
                 ),
-                Align(
-                  alignment: Alignment.topCenter,
-                  child: Column(
-                    children: <Widget>[
-                      Container(
-                        height: 50,
-                        width: double.infinity,
-                        child: Material(
-                          elevation: 5,
-                          child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                SingleChildScrollView(
-                                  scrollDirection: Axis.horizontal,
-                                  child: Row(
-                                    children: <Widget>[
-                                      Icon(Icons.location_on,
-                                          color: Colors.green),
-                                      SizedBox(width: 3),
-                                      Text(
-                                        'MoocKaa',
-                                        style: TextStyle(
-                                            color: Colors.green,
-                                            fontWeight: FontWeight.bold),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                Text(
-                                  '07:30',
-                                  style: TextStyle(
-                                    color: Colors.grey,
-                                  ),
-                                ),
-                                Container(
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                        width: 1, color: Colors.green),
-                                    borderRadius: BorderRadius.circular(50),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(5.0),
-                                    child: Text(
-                                      '12:30',
-                                      style: TextStyle(
-                                        color: Colors.grey,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Text(
-                                  '07:30',
-                                  style: TextStyle(
-                                    color: Colors.grey,
-                                  ),
-                                ),
-                                Text(
-                                  '07:30',
-                                  style: TextStyle(
-                                    color: Colors.grey,
-                                  ),
-                                ),
-                                Text(
-                                  '07:30',
-                                  style: TextStyle(
-                                    color: Colors.grey,
-                                  ),
-                                ),
-                                Icon(Icons.notifications, color: Colors.green),
-                              ]),
-                        ),
+                ToolBar(
+                  child: Container(
+                    width: double.infinity,
+                    child: Center(
+                      child: Row(
+                        children: <Widget>[
+                          SizedBox(width: 15),
+                          Text("Y3peHHHHNN A3Cap H1",
+                              style: TextStyle(
+                                  color: Colors.black54,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16)),
+                        ],
                       ),
-                      Divider(height: 2, thickness: 2),
-                      Material(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            width: double.infinity,
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 8.0, horizontal: 10),
-                              child: Text("Y3peHHHHNN A3Cap H1",
-                                  style: TextStyle(
-                                      color: Colors.black54,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18)),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Divider(height: 3, thickness: 3),
-                    ],
+                    ),
                   ),
-                ),
+                )
               ],
+            ),
+          ],
+        ),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            IconButton(
+              icon: Icon(Icons.home),
+              onPressed: () {},
+              iconSize: 40,
+            ),
+            IconButton(
+              icon: Icon(Icons.explore),
+              onPressed: () {},
+              iconSize: 40,
+            ),
+            IconButton(
+              icon: Icon(Icons.shopping_basket),
+              onPressed: () {},
+              iconSize: 40,
+            ),
+            IconButton(
+              icon: Icon(Icons.school),
+              onPressed: () {},
+              iconSize: 40,
+            ),
+            IconButton(
+              icon: Icon(Icons.person_outline),
+              onPressed: () {},
+              iconSize: 40,
             ),
           ],
         ),

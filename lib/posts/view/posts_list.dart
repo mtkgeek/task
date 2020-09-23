@@ -43,7 +43,10 @@ class _PostsListState extends State<PostsList> {
                     : Column(
                         children: <Widget>[
                           PostListItem(post: state.posts[index]),
-                          Divider(height: 5, thickness: 5),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                            child: Divider(height: 5, thickness: 5),
+                          ),
                         ],
                       );
               },
@@ -66,17 +69,26 @@ class _PostsListState extends State<PostsList> {
                       children: <Widget>[
                         Container(
                           height: 200,
-                          color: Colors.white,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
                         ),
                         SizedBox(height: 25),
                         Container(
                           height: 200,
-                          color: Colors.white,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
                         ),
                         SizedBox(height: 25),
                         Container(
                           height: 200,
-                          color: Colors.white,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
                         ),
                       ],
                     ),

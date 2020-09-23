@@ -11,16 +11,19 @@ class PostListItem extends StatelessWidget {
     // final textTheme = Theme.of(context).textTheme;
     return GestureDetector(
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(10.0),
           child: Container(
             height: 150,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+            ),
             child: Stack(
               children: <Widget>[
                 Container(
                     height: 150,
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
+                      borderRadius: BorderRadius.circular(10),
                       image: DecorationImage(
                         image: NetworkImage(post.photoUrl),
                         fit: BoxFit.cover,
@@ -28,12 +31,13 @@ class PostListItem extends StatelessWidget {
                     )),
                 Container(
                   decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
                       color: Colors.white,
                       gradient: LinearGradient(
                           begin: FractionalOffset.topCenter,
                           end: FractionalOffset.bottomCenter,
                           colors: [
-                            Colors.grey.withOpacity(0.3),
+                            Colors.grey.withOpacity(0.4),
                             Colors.black,
                           ],
                           stops: [
