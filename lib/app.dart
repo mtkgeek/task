@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:task/posts/posts.dart';
 
 class App extends StatefulWidget {
@@ -13,12 +14,14 @@ class _AppState extends State<App> {
         debugShowCheckedModeBanner: false,
         home: Scaffold(
           appBar: AppBar(
+            elevation: 0,
             title: Text(
               "A3kaPm",
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold),
+              style: GoogleFonts.openSans(
+                  textStyle: TextStyle(
+                      color: Colors.black,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold)),
             ),
             centerTitle: true,
             backgroundColor: Colors.white,

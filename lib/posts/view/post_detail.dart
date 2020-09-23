@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:task/posts/models/post.dart';
 import 'package:task/posts/widgets/toolbar.dart';
 
@@ -9,11 +10,14 @@ class PostDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          "A3kaPm",
-          style: TextStyle(
-              color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),
-        ),
+        elevation: 0,
+        title: Text("A3kaPm",
+            style: GoogleFonts.openSans(
+              textStyle: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold),
+            )),
         centerTitle: true,
         backgroundColor: Colors.white,
         leading: GestureDetector(
@@ -46,22 +50,22 @@ class PostDetailPage extends StatelessWidget {
             Stack(
               children: <Widget>[
                 Container(
-                  margin: EdgeInsets.only(top: 100),
+                  margin: EdgeInsets.only(top: 120),
                   child: Container(
                       width: double.infinity,
                       child: Column(
                         children: <Widget>[
                           Padding(
                             padding: const EdgeInsets.all(14.0),
-                            child: Text(
-                              '${post.body}',
-                              style: TextStyle(fontSize: 16.0),
-                            ),
+                            child: Text('${post.body}',
+                                style: GoogleFonts.openSans(
+                                  textStyle: TextStyle(fontSize: 16.0),
+                                )),
                           ),
                           SizedBox(height: 40),
                           Column(
                             children: <Widget>[
-                              Divider(height: 3, thickness: 3),
+                              Divider(height: 2, thickness: 2),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Container(
@@ -70,14 +74,15 @@ class PostDetailPage extends StatelessWidget {
                                     padding: const EdgeInsets.symmetric(
                                         vertical: 8.0, horizontal: 10),
                                     child: Text("Y3peHHHHNN A3Cap H1",
-                                        style: TextStyle(
-                                            color: Colors.black54,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 16)),
+                                        style: GoogleFonts.openSans(
+                                            textStyle: TextStyle(
+                                                color: Colors.black87,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 14))),
                                   ),
                                 ),
                               ),
-                              Divider(height: 3, thickness: 3),
+                              Divider(height: 2, thickness: 2),
                             ],
                           ),
                           SizedBox(height: 4),
@@ -92,10 +97,11 @@ class PostDetailPage extends StatelessWidget {
                         children: <Widget>[
                           SizedBox(width: 15),
                           Text("Y3peHHHHNN A3Cap H1",
-                              style: TextStyle(
-                                  color: Colors.black54,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16)),
+                              style: GoogleFonts.openSans(
+                                  textStyle: TextStyle(
+                                      color: Colors.black87,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 14))),
                         ],
                       ),
                     ),

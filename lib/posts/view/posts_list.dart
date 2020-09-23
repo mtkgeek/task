@@ -45,7 +45,7 @@ class _PostsListState extends State<PostsList> {
                           PostListItem(post: state.posts[index]),
                           Padding(
                             padding: const EdgeInsets.symmetric(vertical: 8.0),
-                            child: Divider(height: 5, thickness: 5),
+                            child: Divider(height: 2, thickness: 2),
                           ),
                         ],
                       );

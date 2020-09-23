@@ -12,7 +12,7 @@ class PostsPage extends StatelessWidget {
       child: Container(
         child: Stack(
           children: <Widget>[
-            Container(margin: EdgeInsets.only(top: 50), child: PostsList()),
+            Container(margin: EdgeInsets.only(top: 60), child: PostsList()),
             ToolBar(),
           ],
         ),

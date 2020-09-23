@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:task/posts/posts.dart';
 
 class PostListItem extends StatelessWidget {
@@ -15,7 +16,7 @@ class PostListItem extends StatelessWidget {
           child: Container(
             height: 150,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(3),
             ),
             child: Stack(
               children: <Widget>[
@@ -23,7 +24,7 @@ class PostListItem extends StatelessWidget {
                     height: 150,
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(3),
                       image: DecorationImage(
                         image: NetworkImage(post.photoUrl),
                         fit: BoxFit.cover,
@@ -31,7 +32,7 @@ class PostListItem extends StatelessWidget {
                     )),
                 Container(
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(3),
                       color: Colors.white,
                       gradient: LinearGradient(
                           begin: FractionalOffset.topCenter,
@@ -55,10 +56,11 @@ class PostListItem extends StatelessWidget {
                         child: Text('${post.title}',
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                                fontSize: 18)),
+                            style: GoogleFonts.openSans(
+                                textStyle: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                    fontSize: 18))),
                       ),
                     )),
                 Positioned(
@@ -71,10 +73,11 @@ class PostListItem extends StatelessWidget {
                         child: Text('${post.name}',
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.green,
-                                fontSize: 13)),
+                            style: GoogleFonts.openSans(
+                                textStyle: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xFF6B9949),
+                                    fontSize: 13))),
                       ),
                     )),
               ],
